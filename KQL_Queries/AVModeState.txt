@@ -8,7 +8,7 @@ let
                 AvModeInt == 1, 'Passive',
                 AvModeInt == 4, 'EDR Block',
                 'Unknown')
-            | project DeviceName, DeviceId, AvMode
+            | project DeviceName, DeviceId, OSPlatform, AvMode
         ",
 
         HuntingUrl = "https://api.security.microsoft.com/api/advancedqueries",
