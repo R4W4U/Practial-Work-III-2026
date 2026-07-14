@@ -3,7 +3,7 @@ let
             DeviceTvmInfoGathering
             | extend AvPlatformVersion = AdditionalFields.AvPlatformVersion
             | extend AvIsPlatformUptodate = AdditionalFields.AvIsPlatformUptodate
-            | project DeviceName, DeviceId, AvPlatformVersion, AvIsPlatformUptodate
+            | project DeviceName, DeviceId, OSPlatform, AvPlatformVersion, AvIsPlatformUptodate
         ",
 
         HuntingUrl = "https://api.security.microsoft.com/api/advancedqueries",
