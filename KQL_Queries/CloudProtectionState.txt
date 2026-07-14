@@ -7,7 +7,7 @@ let
                 CloudProtectionStateNum == 1, 'Send safe samples',
                 CloudProtectionStateNum == 4, 'Never send',
                 'Unknown')
-            | project DeviceName, DeviceId, CloudProtectionState
+            | project DeviceName, DeviceId, OSPlatform, CloudProtectionState
         ",
 
         HuntingUrl = "https://api.security.microsoft.com/api/advancedqueries",
