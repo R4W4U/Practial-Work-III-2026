@@ -1,5 +1,5 @@
-# Practial-Work-III-2026
 # Microsoft Defender for Endpoint Power BI Dashboard
+Practial-Work-III-2026
 
 ## Overview
 This project focuses on the development of a Power BI dashboard for Microsoft Defender for Endpoint (MDE). Data is retrieved from MDE using Kusto Query Language (KQL) queries executed through the Microsoft Graph API and visualized in Power BI.
