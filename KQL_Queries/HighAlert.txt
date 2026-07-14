@@ -1,0 +1,7 @@
+let
+
+    Query = "incidents",
+
+    Source = OData.Feed("https://api.security.microsoft.com/api/" & Query, null, [Implementation="2.0", MoreColumns=true])
+in
+    Source

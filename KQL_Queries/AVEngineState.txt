@@ -1,0 +1,40 @@
+let
+        AdvancedHuntingQuery = "
+            DeviceTvmInfoGathering
+            | extend AvEngineVersion = AdditionalFields.AvEngineVersion
+            | extend AvIsEngineUptodate = AdditionalFields.AvIsEngineUptodate
+            | project DeviceName, DeviceId, AvEngineVersion, AvIsEngineUptodate
+        ",
+
+        HuntingUrl = "https://api.security.microsoft.com/api/advancedqueries",
+
+        Response = Json.Document(Web.Contents(HuntingUrl, [Query=[key=AdvancedHuntingQuery]])),
+
+        TypeMap = #table(
+        { "Type", "PowerBiType" },
+        {
+            { "Double",   Double.Type },
+            { "Int64",    Int64.Type },
+            { "Int32",    Int32.Type },
+            { "Int16",    Int16.Type },
+            { "UInt64",   Number.Type },
+            { "UInt32",   Number.Type },
+            { "UInt16",   Number.Type },
+            { "Byte",     Byte.Type },
+            { "Single",   Single.Type },
+            { "Decimal",  Decimal.Type },
+            { "TimeSpan", Duration.Type },
+            { "DateTime", DateTimeZone.Type },
+            { "String",   Text.Type },
+            { "Boolean",  Logical.Type },
+            { "SByte",    Logical.Type },
+            { "Guid",     Text.Type }
+        }),
+
+        Schema = Table.FromRecords(Response[Schema]),
+        TypedSchema = Table.Join(Table.SelectColumns(Schema, {"Name", "Type"}), {"Type"}, TypeMap , {"Type"}),
+        Results = Response[Results],
+        Rows = Table.FromRecords(Results, Schema[Name]),
+        Table = Table.TransformColumnTypes(Rows, Table.ToList(TypedSchema, (c) => {c{0}, c{2}}))
+
+    in Table
