@@ -2,7 +2,7 @@ let
         AdvancedHuntingQuery = "
         DeviceInfo
             | summarize arg_max(Timestamp, *) by DeviceId
-            | project DeviceName, DeviceId, JoinType, OnboardingStatus
+            | project DeviceName, DeviceId, OSPlatform, JoinType, OnboardingStatus
             | order by JoinType asc, OnboardingStatus asc
         ",
 
