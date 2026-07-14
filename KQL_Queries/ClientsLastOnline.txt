@@ -2,7 +2,7 @@ let
         AdvancedHuntingQuery = "
             DeviceInfo
             | summarize LastSeen = arg_max(Timestamp, *) by DeviceName
-            | project DeviceName, DeviceId, LastSeen
+            | project DeviceName, DeviceId, OSPlatform, LastSeen
         ",
 
         HuntingUrl = "https://api.security.microsoft.com/api/advancedqueries",
