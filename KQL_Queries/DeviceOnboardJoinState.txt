@@ -1,9 +1,8 @@
 let
         AdvancedHuntingQuery = "
         DeviceInfo
-            | summarize arg_max(Timestamp, *) by DeviceId
-            | project DeviceName, DeviceId, OSPlatform, JoinType, OnboardingStatus
-            | order by JoinType asc, OnboardingStatus asc
+                | summarize arg_max(Timestamp, *) by DeviceId
+                | project DeviceName, DeviceId, JoinType, OnboardingStatus
         ",
 
         HuntingUrl = "https://api.security.microsoft.com/api/advancedqueries",
