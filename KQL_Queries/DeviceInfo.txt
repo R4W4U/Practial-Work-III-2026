@@ -1,6 +1,6 @@
 let
     Source = Json.Document(Web.Contents("https://api.security.microsoft.com/api/machines")),
     Data = Table.FromRecords(Source[value]),
-    #"Entfernte Spalten" = Table.RemoveColumns(Data,{"mergedIntoMachineId", "isPotentialDuplication", "isExcluded", "exclusionReason", "osBuild", "agentVersion", "rbacGroupId", "machineTags", "osArchitecture", "ipAddresses", "vmMetadata", "osProcessor"})
+    Table = Table.RemoveColumns(Data,{"mergedIntoMachineId", "isPotentialDuplication", "isExcluded", "exclusionReason", "osBuild", "agentVersion", "rbacGroupId", "machineTags", "osArchitecture", "ipAddresses", "vmMetadata", "osProcessor"})
 in
-    #"Entfernte Spalten"
+    Table
